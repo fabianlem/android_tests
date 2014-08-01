@@ -5,6 +5,10 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 public class testActivity1 extends FragmentActivity  implements ActionBar.TabListener{
     /**
      * Called when the activity is first created.
@@ -68,4 +72,28 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.dropdownmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu){
+//code here
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.submenu1:
+                Toast.makeText(getApplicationContext(), "submenu1", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.submenu2:
+                Toast.makeText(getApplicationContext(), "submenu2", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

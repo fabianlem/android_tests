@@ -1,5 +1,11 @@
 package com.example.testapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,10 +23,13 @@ import java.util.ArrayList;
  */
 public class fragOne extends Fragment{
     ArrayList<String> mDataSourceList;
+    View rootview;
+    CustomArrayAdapter arrAdapter;
+    private final String TAG = "updateBroadcast";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstancesState){
-        View rootview = inflater.inflate(R.layout.fragmrnt_one, container, false);
-
+        rootview = inflater.inflate(R.layout.fragmrnt_one, container, false);
+        getActivity().registerReceiver(broadcastReceiver, new IntentFilter(TAG));
 
 
         return rootview;
@@ -29,21 +38,48 @@ public class fragOne extends Fragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mDataSourceList = new ArrayList<String>();
-        for(int i=0; i < 10; i++)
+        for(int i=0; i < 2; i++)
             mDataSourceList.add("列表数据 " + i);
 
         ListView listView = (ListView) getActivity().findViewById(R.id.listview);
 //        listView.setAdapter(new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mDataSourceList));
 ////
         String[] values = mDataSourceList.toArray(new String[mDataSourceList.size()]);
-        CustomArrayAdapter arrAdapter = new CustomArrayAdapter(getActivity(), values );
+        arrAdapter = new CustomArrayAdapter(getActivity(), mDataSourceList);
         listView.setAdapter(arrAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             ////
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                mDataSourceList.remove(position);
+                arrAdapter.notifyDataSetChanged();
             }
+
+//            @Override
+//            public void onConfigurationChanged(Configuration newConfig) {
+//                super.onConfigurationChanged(newConfig);
+//                setContentView(R.layout.mylayout);
+//
+//            }
+
         });
+    }
+
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateViewBackground(intent);
+        }
+    };
+
+    private void updateViewBackground(Intent intent){
+        String color = intent.getStringExtra("newColor");
+        mDataSourceList.add("элемент списка");
+        rootview.setBackgroundColor(Color.parseColor(color));
+//        String[] values = mDataSourceList.toArray(new String[mDataSourceList.size()]);
+//        ArrayAdapter ar = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1, values);
+        arrAdapter.notifyDataSetChanged();
     }
     }

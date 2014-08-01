@@ -11,11 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class CustomArrayAdapter extends ArrayAdapter<String> {
     private final Context context;
-    private final String[] values;
+    private final ArrayList<String> values;
 
-    public CustomArrayAdapter(Context context, String[] values) {
+    public CustomArrayAdapter(Context context, ArrayList values) {
         super(context, R.layout.informative_list, values);
         this.context = context;
         this.values = values;
@@ -28,12 +30,12 @@ public class CustomArrayAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(R.layout.informative_list, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.firstLine);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        textView.setText(values[position]);
+        textView.setText(values.get(position));
 
         TextView textView2 = (TextView) rowView.findViewById(R.id.secondLine);
         textView2.setText("more information");
         // change the icon for Windows and iPhone
-        String s = values[position];
+        String s = values.get(position);
         if (s.startsWith("iPhone")) {
             imageView.setImageResource(R.drawable.bus);
         } else {
