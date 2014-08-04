@@ -5,15 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.*;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
+
 /**
  * Created by gutierrezf on 7/24/2014.
  */
@@ -24,6 +26,10 @@ public class fragTwo extends Fragment implements View.OnClickListener {
     private boolean clicked_b2;
     Button button2, button1;
     Intent update;
+    Drawable off;
+    Drawable on;
+    ImageView onbus;
+    ImageView offbus;
     private final String TAG = "updateBroadcast";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +44,19 @@ public class fragTwo extends Fragment implements View.OnClickListener {
         button2 = (Button) rootView.findViewById(R.id.button2);
         button2.setOnClickListener(this);
         update = new Intent(getActivity().getApplicationContext(), testService.class);
+
+        onbus = (ImageView)rootView.findViewById(R.id.info_bar_on);
+        offbus = (ImageView)rootView.findViewById(R.id.info_bar_off);
+//        triptab = bg.getDrawable();
+        on = rootView.getResources().getDrawable(R.drawable.info_bar);
+        off = rootView.getResources().getDrawable(R.drawable.info_bar);
+//        triptab = (GradientDrawable) findDrawableByLayerId(R.drawable.info_bar);
+
+//        TableRow tableRow = rootView.get//rootView.findViewById(R.id.tableRow1);
+//        triptab = (GradientDrawable)
+        //rootView.findViewById(R.id.info_bar_on);
+//        triptab.setShape(rootView.findViewById(R.id.info_bar_on));
+
         return rootView;
     }
 
@@ -47,12 +66,17 @@ public class fragTwo extends Fragment implements View.OnClickListener {
             case R.id.button1:
                 if( !clicked_b1) {
                     tview.setText("changes");
-                  rootView.setBackgroundColor(Color.parseColor("#FFFFC66C"));
+//                    rootView.setBackgroundColor(Color.parseColor("#FFFFC66C"));
+                    off.setColorFilter(Color.parseColor("#FFfa6a6a"), PorterDuff.Mode.SRC_ATOP);
+                    offbus.setBackground(off);
                     clicked_b1 = !clicked_b1;
                 }
                 else{
                     tview.setText("more changes");
-                    rootView.setBackgroundColor(Color.parseColor("#ff65ffc1"));
+//                    rootView.setBackgroundColor(Color.parseColor("#ff65ffc1"));
+
+                    off.setColorFilter(Color.parseColor("#FF8C8C88"), PorterDuff.Mode.SRC_ATOP);
+                    offbus.setBackground(off);
                     clicked_b1 = !clicked_b1;
                 }
                 break;
@@ -96,6 +120,9 @@ public class fragTwo extends Fragment implements View.OnClickListener {
 
     private void updateViewBackground(Intent intent){
         String color = intent.getStringExtra("newColor");
+//        triptab.setColor(Color.parseColor(color));
+        on.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_ATOP);
+        onbus.setBackground(on);
         rootView.setBackgroundColor(Color.parseColor(color));
     }
 
