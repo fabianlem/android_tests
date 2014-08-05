@@ -37,6 +37,112 @@
                     android:layout_height="wrap_content"
                     android:onClick="onClick"
                     android:text="Start Service"/>
+
+        <!-- bus tab thingy -->
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="2"
+                >
+
+            <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="78dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle" >
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal">
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2">
+                        <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingTop="5dp"
+                                android:src="@drawable/bus" />
+
+                        <TextView
+                                android:id="@+id/busID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_alignParentTop="true"
+
+                                android:layout_marginTop="15dp"
+                                android:text="Bus ID"
+                                android:textSize="25dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+
+                            >
+
+                        <ImageView
+                                android:id="@+id/info_bar_on"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="right"
+                                android:background="@drawable/info_bar" />
+
+                        <ImageView
+                                android:id="@+id/info_bar_detected"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="center"
+                                android:background="@drawable/info_bar" />
+
+                        <ImageView
+                                android:id="@+id/info_bar_off"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="left"
+                                android:background="@drawable/info_bar" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_alignParentTop="true"
+
+                    android:layout_marginTop="15dp"
+                    android:text="nothing"
+
+                    android:textSize="25dp" />
+        </LinearLayout>
+
+        <!-- end of bus tab thingy-->
+
     </LinearLayout>
 
 </RelativeLayout>
