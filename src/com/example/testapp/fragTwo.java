@@ -7,7 +7,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.*;
-import android.media.Image;
+//import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -93,6 +93,8 @@ public class fragTwo extends Fragment implements View.OnClickListener {
                     getActivity().unregisterReceiver(broadcastReceiver);
                     getActivity().stopService(update);
                     button2.setText("Start Service");
+                    on.setColorFilter(Color.parseColor("#FF8C8C88"), PorterDuff.Mode.SRC_ATOP);
+                    onbus.setBackground(on);
                     clicked_b2 = !clicked_b2;
                 }
                 break;
@@ -123,7 +125,7 @@ public class fragTwo extends Fragment implements View.OnClickListener {
 //        triptab.setColor(Color.parseColor(color));
         on.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_ATOP);
         onbus.setBackground(on);
-        rootView.setBackgroundColor(Color.parseColor(color));
+//        rootView.setBackgroundColor(Color.parseColor(color));
     }
 
 }

@@ -25,12 +25,13 @@ public class fragOne extends Fragment{
     ArrayList<String> mDataSourceList;
     View rootview;
     CustomArrayAdapter arrAdapter;
+    Boolean change_fl;
     private final String TAG = "updateBroadcast";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstancesState){
         rootview = inflater.inflate(R.layout.fragmrnt_one, container, false);
         getActivity().registerReceiver(broadcastReceiver, new IntentFilter(TAG));
-
+        change_fl = true;
 
         return rootview;
     }
@@ -75,11 +76,15 @@ public class fragOne extends Fragment{
     };
 
     private void updateViewBackground(Intent intent){
+        if(change_fl) {
+            mDataSourceList.add("элемент списка " + mDataSourceList.size());
+            arrAdapter.notifyDataSetChanged();
+        }
         String color = intent.getStringExtra("newColor");
-        mDataSourceList.add("элемент списка");
         rootview.setBackgroundColor(Color.parseColor(color));
+        change_fl = !change_fl;
 //        String[] values = mDataSourceList.toArray(new String[mDataSourceList.size()]);
 //        ArrayAdapter ar = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1, values);
-        arrAdapter.notifyDataSetChanged();
+
     }
     }
