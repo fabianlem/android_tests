@@ -17,11 +17,12 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         switch (index){
             case 0: return new fragOne();
             case 1: return new fragTwo();
+            case 2: return new gridFrag();
         }
         return null;
     }
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }

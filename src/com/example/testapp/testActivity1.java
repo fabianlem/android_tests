@@ -16,7 +16,7 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
     private ViewPager mViewPager;
     private TabsPagerAdapter mTabsAdapter;
     private ActionBar actionBar;
-    private String[] tabs = {"one", "two"};
+    private String[] tabs = {"one", "two", "three"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
