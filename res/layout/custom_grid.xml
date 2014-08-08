@@ -1,49 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="?android:attr/listPreferredItemHeight"
-                android:id="@+id/informativelayout"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
                 android:padding="6dip"
                 >
     <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal"
+                  android:layout_height="fill_parent"
+                  android:orientation="vertical"
                   android:gravity="center"
                   >
         <ImageView
-                android:id="@+id/icon"
+                android:id="@+id/icon2"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginRight="10dip"
-                android:layout_marginLeft="25dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="TODO"
+                android:gravity="center_vertical|center_horizontal"
                 android:src="@drawable/ic_launcher" />
 
         <LinearLayout android:layout_width="fill_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
-                      android:gravity="center_vertical"
+                      android:gravity="center_vertical|center_horizontal"
 
                       android:background="@drawable/rounded_rectangle">
             <TextView
-                    android:id="@+id/firstLine"
+                    android:id="@+id/firstLine2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
                     android:text="Example application"
                     android:textSize="16sp" />
             <TextView
-                    android:id="@+id/secondLine"
+                    android:id="@+id/secondLine2"
                     android:layout_width="fill_parent"
                     android:layout_height="26dip"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="3dp"
                     android:ellipsize="marquee"
                     android:singleLine="true"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal"
                     android:text="Description"
                     android:textSize="12sp" />
 
