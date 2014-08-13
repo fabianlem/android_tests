@@ -30,7 +30,7 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
         mViewPager.setAdapter(mTabsAdapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+        mViewPager.setOffscreenPageLimit(3);
         // Adding Tabs
         for (String tab_name : tabs)
             actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));

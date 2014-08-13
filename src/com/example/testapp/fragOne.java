@@ -27,9 +27,20 @@ public class fragOne extends Fragment{
     CustomArrayAdapter arrAdapter;
     Boolean change_fl;
     private final String TAG = "updateBroadcast";
+
+    public static fragOne newInstance(){
+        fragOne f =  new fragOne();
+        return f;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstancesState){
         rootview = inflater.inflate(R.layout.fragmrnt_one, container, false);
+        mDataSourceList = new ArrayList<String>();
+        if(savedInstancesState != null)
+            mDataSourceList = savedInstancesState.getStringArrayList("list");
+        else
+            for(int i=0; i < 2; i++)
+                mDataSourceList.add("列表数据 " + i);
         getActivity().registerReceiver(broadcastReceiver, new IntentFilter(TAG));
         change_fl = true;
 
@@ -38,14 +49,17 @@ public class fragOne extends Fragment{
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mDataSourceList = new ArrayList<String>();
-        for(int i=0; i < 2; i++)
-            mDataSourceList.add("列表数据 " + i);
+//        mDataSourceList = new ArrayList<String>();
+//        if(savedInstanceState != null)
+//            mDataSourceList = savedInstanceState.getStringArrayList("list");
+//        else
+//            for(int i=0; i < 2; i++)
+//                mDataSourceList.add("列表数据 " + i);
 
         ListView listView = (ListView) getActivity().findViewById(R.id.listview);
 //        listView.setAdapter(new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, mDataSourceList));
 ////
-        String[] values = mDataSourceList.toArray(new String[mDataSourceList.size()]);
+//        String[] values = mDataSourceList.toArray(new String[mDataSourceList.size()]);
         arrAdapter = new CustomArrayAdapter(getActivity(), mDataSourceList);
         listView.setAdapter(arrAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,7 +81,11 @@ public class fragOne extends Fragment{
         });
     }
 
-
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArrayList("list", mDataSourceList);
+    }
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
