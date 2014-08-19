@@ -24,7 +24,7 @@ public class fragTwo extends Fragment implements View.OnClickListener {
     View rootView;
     private boolean clicked_b1;
     private boolean clicked_b2;
-    Button button2, button1;
+    Button button2, button1, button3;
     Intent update;
     Drawable off;
     Drawable on;
@@ -43,6 +43,9 @@ public class fragTwo extends Fragment implements View.OnClickListener {
 
         button2 = (Button) rootView.findViewById(R.id.button2);
         button2.setOnClickListener(this);
+
+        button3 = (Button) rootView.findViewById(R.id.button3);
+        button3.setOnClickListener(this);
         update = new Intent(getActivity().getApplicationContext(), testService.class);
 
         onbus = (ImageView)rootView.findViewById(R.id.info_bar_on);
@@ -97,6 +100,10 @@ public class fragTwo extends Fragment implements View.OnClickListener {
                     onbus.setBackground(on);
                     clicked_b2 = !clicked_b2;
                 }
+                break;
+
+            case R.id.button3:
+                               getActivity().startActivity(new Intent(getActivity(), panelTest.class));
                 break;
             default: Toast.makeText(getActivity().getApplicationContext(), "error",Toast.LENGTH_LONG);
                 break;

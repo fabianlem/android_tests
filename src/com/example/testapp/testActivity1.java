@@ -1,12 +1,16 @@
 package com.example.testapp;
 
 import android.app.ActionBar;
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+//import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class testActivity1 extends FragmentActivity  implements ActionBar.TabListener{
@@ -17,12 +21,13 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
     private TabsPagerAdapter mTabsAdapter;
     private ActionBar actionBar;
     private String[] tabs = {"one", "two", "three"};
-
+    private boolean isTwoPane = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         // Initialization
+//        determinePaneLayout();
         mViewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         mTabsAdapter = new TabsPagerAdapter(getSupportFragmentManager());
@@ -30,7 +35,7 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
         mViewPager.setAdapter(mTabsAdapter);
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+        mViewPager.setOffscreenPageLimit(3);
         // Adding Tabs
         for (String tab_name : tabs)
             actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
@@ -96,4 +101,5 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

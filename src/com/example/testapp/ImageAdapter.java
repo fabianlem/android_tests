@@ -53,9 +53,11 @@ public class ImageAdapter extends BaseAdapter {
 //            imageView = new ImageView(mContext);
 //            imageView.setLayoutParams(new GridView.LayoutParams(96, 96));
 //            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            imageView.setAdjustViewBounds(true);
 //            imageView.setPadding(8, 8, 8, 8);
             imageView.setImageResource(mThumbIds[position]);
+            imageView.getLayoutParams().height = 250;
+            imageView.getLayoutParams().width = 250;
+            imageView.setAdjustViewBounds(true);
 
         } else {
 //            imageView = (ImageView) convertView;
