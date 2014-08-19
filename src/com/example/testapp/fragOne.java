@@ -87,4 +87,8 @@ public class fragOne extends Fragment{
 //        ArrayAdapter ar = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1, values);
 
     }
+    @Override
+    public void onDestroy(){
+        getActivity().unregisterReceiver(broadcastReceiver);
     }
+}
