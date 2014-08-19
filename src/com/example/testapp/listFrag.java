@@ -1,5 +1,6 @@
 package com.example.testapp;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +25,7 @@ public class listFrag extends Fragment{
     CustomArrayAdapter arrAdapter;
     Boolean change_fl;
     private final String TAG = "updateBroadcast";
-
+    OnItemSelectedListener mCallback;
     public static listFrag newInstance(){
         listFrag f =  new listFrag();
         return f;
@@ -65,7 +66,7 @@ public class listFrag extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 //                mDataSourceList.remove(position);
-
+                mCallback.onFragItemSelected(position, mDataSourceList.get(position));
                 arrAdapter.notifyDataSetChanged();
             }
 
@@ -84,6 +85,25 @@ public class listFrag extends Fragment{
         super.onSaveInstanceState(outState);
         outState.putStringArrayList("list", mDataSourceList);
     }
+
+    public interface OnItemSelectedListener {
+        public void onFragItemSelected(int position, String name);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnItemSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
+
 //    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
 //        @Override
 //        public void onReceive(Context context, Intent intent) {

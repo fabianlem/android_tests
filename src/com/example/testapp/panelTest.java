@@ -3,13 +3,15 @@ package com.example.testapp;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.app.Activity;
 import android.widget.FrameLayout;
+import android.app.Activity;
+import android.app.FragmentManager;
 
 /**
  * Created by gutierrezf on 8/18/2014.
  */
-public class panelTest extends FragmentActivity {
+public class panelTest extends Activity implements listFrag.OnItemSelectedListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panel_layout);
@@ -23,7 +25,7 @@ public class panelTest extends FragmentActivity {
 //            isTwoPane = true;
             FragmentTransaction ft;
             ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.placement_holder1, new listFrag());
+            ft.replace(R.id.placement_holder1, new listFrag(), "list");
             ft.commit();
         }
 
@@ -33,8 +35,16 @@ public class panelTest extends FragmentActivity {
 //            isTwoPane = true;
             FragmentTransaction ft;
             ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.placement_holder2, new moreInfo_frag());
+            ft.replace(R.id.placement_holder2, new moreInfo_frag(), "moreInfo");
             ft.commit();
+        }
+    }
+
+    public void onFragItemSelected(int position, String name){
+        moreInfo_frag moreInfo = (moreInfo_frag) getFragmentManager().findFragmentByTag("moreInfo");// getSupportFragmentManager()
+        if(moreInfo != null){
+            moreInfo.setNam(name);
+            moreInfo.setDesc(""+position);
         }
     }
 }
