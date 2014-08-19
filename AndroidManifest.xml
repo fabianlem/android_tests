@@ -22,6 +22,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.example.testapp.panelTest"
+                  android:screenOrientation="landscape"/>
         <service
                 android:name="com.example.testapp.testService"
                 android:label="@string/test_service"
