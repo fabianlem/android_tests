@@ -11,7 +11,7 @@ import android.app.FragmentManager;
 /**
  * Created by gutierrezf on 8/18/2014.
  */
-public class panelTest extends Activity implements listFrag.OnItemSelectedListener {
+public class panelTest extends Activity implements gridlist.OnItemSelectedListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.panel_layout);
@@ -25,7 +25,7 @@ public class panelTest extends Activity implements listFrag.OnItemSelectedListen
 //            isTwoPane = true;
             FragmentTransaction ft;
             ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.placement_holder1, new listFrag(), "list");
+            ft.replace(R.id.placement_holder1, new gridlist());
             ft.commit();
         }
 
@@ -40,11 +40,13 @@ public class panelTest extends Activity implements listFrag.OnItemSelectedListen
         }
     }
 
-    public void onFragItemSelected(int position, String name){
+    public void onFragItemSelected(int position, String name, String color){
         moreInfo_frag moreInfo = (moreInfo_frag) getFragmentManager().findFragmentByTag("moreInfo");// getSupportFragmentManager()
         if(moreInfo != null){
             moreInfo.setNam(name);
             moreInfo.setDesc(""+position);
+            moreInfo.setPic(position);
+            moreInfo.setBackground(color);
         }
     }
 }
