@@ -31,7 +31,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 //                    }else
                         return new fragOne();
             case 1:     return new fragTwo();
-            case 2:     return new gridFrag();
+            case 2:     return new panelTest();
         }
         return null;
     }

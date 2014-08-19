@@ -8,12 +8,13 @@ import android.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 //import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class testActivity1 extends FragmentActivity  implements ActionBar.TabListener{
+public class testActivity1 extends FragmentActivity  implements ActionBar.TabListener, gridlist.OnItemSelectedListener{
     /**
      * Called when the activity is first created.
      */
@@ -71,6 +72,7 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
         // on tab selected
         // show respected fragment view
         mViewPager.setCurrentItem(tab.getPosition());
+
     }
 
     @Override
@@ -101,5 +103,17 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
                 return super.onOptionsItemSelected(item);
         }
     }
-
+    public void onFragItemSelected(int position, String name, String color){
+        Log.e("testActivity", "clicked " + position+name+color);
+//        panelTest moreInfo = (panelTest) getFragmentManager().findFragmentByTag("moreInfo");// getSupportFragmentManager()
+        moreInfo_frag moreInfo = (moreInfo_frag) getSupportFragmentManager().findFragmentByTag("moreInfo"); //mTabsAdapter.getItem(2);
+//        if(panTest!= null)
+//            panTest.updateInfo(position, name, color);
+        if(moreInfo != null){
+            moreInfo.setNam(name);
+            moreInfo.setDesc(""+position);
+            moreInfo.setPic(position);
+            moreInfo.setBackground(color);
+        }
+    }
 }

@@ -6,8 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.app.Fragment;
+//import android.app.Fragment;
 import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,9 +69,11 @@ public class gridlist extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-//                Toast.makeText(getActivity().getApplicationContext(), "" + nameList.get(position), Toast.LENGTH_SHORT).show();
-//                view.setBackgroundColor(Color.parseColor(getRandColor()));
+    //                Toast.makeText(getActivity().getApplicationContext(), "" + nameList.get(position), Toast.LENGTH_SHORT).show();
+    //                view.setBackgroundColor(Color.parseColor(getRandColor()));
+                Log.e("gridList","clicked "+ names[position]);
                 mCallback.onFragItemSelected(position, names[position], colors[position]);
+
             }
         });
     }
