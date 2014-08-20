@@ -34,17 +34,18 @@ public class ImageGridAdapter extends BaseAdapter {
     private Integer[] userPix;
 //    private Bitmap userBit;
 
-    public ImageGridAdapter(Context context, int[] pics, String[] names, String[] colors) {
+    public ImageGridAdapter(Context context, Integer[] pics, String[] colors) {
       //  mContext = c;
+        super();
         this.context = context;
         this.colors = colors;
-        this.names = names;
-        this.pix = pics;
+
+        this.userPix = pics;
     }
 
     public int getCount() {
 
-        return pix.length;
+        return userPix.length;
     }
 
     public Object getItem(int position) {
@@ -59,44 +60,62 @@ public class ImageGridAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        View grid;
+//        View grid;
+        ViewHolderItem viewHolder;
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 //        ImageView imageView;
         if (convertView == null) {  // if it's not recycled, initialize some attributes
-            grid = new View(context);
-            grid = inflater.inflate(R.layout.custom_grid2, null);
-            grid.setBackgroundColor(Color.parseColor("#FFE5E5E5"));
-            Drawable stat = grid.getResources().getDrawable(R.drawable.rounded_rectangle);
+//            grid = new View(context);
+            viewHolder = new ViewHolderItem();
+//            viewHolder.li
+                    convertView = inflater.inflate(R.layout.custom_grid2, null);
+            convertView.setBackgroundColor(Color.parseColor("#FFE5E5E5"));
+            viewHolder.stat = convertView.getResources().getDrawable(R.drawable.rounded_rectangle);
 
-            ImageView imageView = (ImageView) grid.findViewById(R.id.g_user);
-
+//            ImageView imageView = (ImageView) convertView.findViewById(R.id.g_user);
+            viewHolder.iv = (ImageView) convertView.findViewById(R.id.g_user);
 //            Log.e("DATALEN", "name " + names[position] + " " + names.size() + " " + names.toString());
 
-            LinearLayout li = (LinearLayout) grid.findViewById(R.id.stat_bar);
-
+//            LinearLayout li = (LinearLayout) convertView.findViewById(R.id.stat_bar);
+            viewHolder.li = (LinearLayout) convertView.findViewById(R.id.stat_bar);
 //            Bitmap userBit = convertToImage(pix[position]);
+            convertView.setTag(viewHolder);
+//            imageView.setImageResource(userPix[position]);
+//            imageView.getLayoutParams().height = 250;
+//            imageView.getLayoutParams().width = 260;
+//
+//            imageView.setAdjustViewBounds(true);
+////            imageView.setPadding(8, 8, 8, 8);
+//
+//            stat.setColorFilter(Color.parseColor(colors[position]), PorterDuff.Mode.SRC_ATOP);
+//            li.setBackground(stat);
 
-            imageView.setImageResource(pix[position]);
-            imageView.getLayoutParams().height = 250;
-            imageView.getLayoutParams().width = 260;
-
-            imageView.setAdjustViewBounds(true);
-//            imageView.setPadding(8, 8, 8, 8);
-
-            stat.setColorFilter(Color.parseColor(colors[position]), PorterDuff.Mode.SRC_ATOP);
-            li.setBackground(stat);
 
         } else {
 //            imageView = (ImageView) convertView;
-            grid =(View) convertView;
+//            grid =(View) convertView;
+            viewHolder = (ViewHolderItem) convertView.getTag();
         }
+        viewHolder.iv.setImageResource(userPix[position]);
+        viewHolder.iv.getLayoutParams().height = 250;
+        viewHolder.iv.getLayoutParams().width = 260;
 
+        viewHolder.iv.setAdjustViewBounds(true);
+//            imageView.setPadding(8, 8, 8, 8);
+
+        viewHolder.stat.setColorFilter(Color.parseColor(colors[position]), PorterDuff.Mode.SRC_ATOP);
+        viewHolder.li.setBackground(viewHolder.stat);
 //        imageView.setImageResource(mThumbIds[position]);
-        return grid;
+        return convertView;
     }
 
-
+    static class ViewHolderItem{
+        LinearLayout li;
+        ImageView iv;
+        Drawable stat;
+    }
 	private Bitmap convertToImage(String userPicBase64) {
 		// TODO Auto-generated method stub			 
 			  InputStream stream = new ByteArrayInputStream(Base64.decode(userPicBase64.getBytes(), Base64.DEFAULT)); ////////////////////////////////////!!!!!!!!!!!!

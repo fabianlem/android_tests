@@ -34,12 +34,12 @@ public class gridlist extends Fragment {
 //    boolean canPay = false;
     GridView gridview ;
     ImageGridAdapter arrAdapter;
-    String[] colors = {"#FFfa6a6a", "#FF8C8C88", "#FFFFC66C", "#ff65ffc1", "#FF59EEFF"};
-    String[] names = {"dino", "girl", "dude", "mario", "eva01"};
-    private int[] mThumbIds = {
-            R.drawable.ic_dino, R.drawable.ic_girl,
-            R.drawable.ic_dude, R.drawable.ic_mario,
-            R.drawable.ic_eva01
+    String[] colors = {"#FF59EEFF", "#FFEBACCD", "#FFFFC66C", "#ff65ffc1", "#FFfa6a6a"};
+    String[] names = {"dude", "girl", "eva01", "mario", "dino"};
+    private Integer[] mThumbIds = {
+            R.drawable.ic_dude, R.drawable.ic_girl,
+            R.drawable.ic_eva01, R.drawable.ic_mario,
+            R.drawable.ic_dino
     };
     OnItemSelectedListener mCallback;
     @Override
@@ -61,7 +61,7 @@ public class gridlist extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        arrAdapter = new ImageGridAdapter(getActivity(), mThumbIds, names, colors ); //, timeStamp
+        arrAdapter = new ImageGridAdapter(getActivity(), mThumbIds, colors ); //, timeStamp
         gridview = (GridView) rootview.findViewById(R.id.gridview);
         gridview.setAdapter(arrAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

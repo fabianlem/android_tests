@@ -41,10 +41,10 @@ public class moreInfo_frag extends Fragment {
         LinearLayout li = (LinearLayout) rootview.findViewById(R.id.gridlayout);
         li.setBackgroundColor(Color.parseColor(color));
     }
-    private int[] mThumbIds = {
-            R.drawable.ic_dino, R.drawable.ic_girl,
-            R.drawable.ic_dude, R.drawable.ic_mario,
-            R.drawable.ic_eva01
+    private Integer[] mThumbIds = {
+            R.drawable.ic_dude, R.drawable.ic_girl,
+            R.drawable.ic_eva01, R.drawable.ic_mario,
+            R.drawable.ic_dino
     };
 //    public interface OnItemSelectedListener {
 //        public void onRssItemSelected(String link);
