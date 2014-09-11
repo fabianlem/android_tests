@@ -11,8 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.*;
 
 public class testActivity1 extends FragmentActivity  implements ActionBar.TabListener, gridlist.OnItemSelectedListener{
     /**
@@ -22,6 +21,7 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
     private TabsPagerAdapter mTabsAdapter;
     private ActionBar actionBar;
     private String[] tabs = {"one", "two", "three"};
+    private Integer[] tabIcons ={ R.drawable.ic_list,  R.drawable.ic_selector,  R.drawable.ic_info};
     private boolean isTwoPane = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,14 @@ public class testActivity1 extends FragmentActivity  implements ActionBar.TabLis
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mViewPager.setOffscreenPageLimit(3);
         // Adding Tabs
-        for (String tab_name : tabs)
-            actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
+        for (int i = 0; i < tabs.length; i++) {
+            RelativeLayout view = (RelativeLayout) getLayoutInflater().inflate(R.layout.custom_tab, null);
+            ImageView icon = (ImageView) view.findViewById(R.id.tabicon);
+            icon.setImageResource(tabIcons[i]);
+            TextView title = (TextView) view.findViewById(R.id.tabtitle);
+            title.setText(tabs[i]);
+            actionBar.addTab(actionBar.newTab().setCustomView(view).setTabListener(this));
+        }
 
         /**
          * on swiping the viewpager make respective tab selected
